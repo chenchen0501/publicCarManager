@@ -1,6 +1,5 @@
 <template>
-  <div>123
-  </div>
+  <div>A-1-1页面</div>
 </template>
 <script>
 export default {
