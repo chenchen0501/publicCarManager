@@ -12,30 +12,30 @@ export default new Router({
       component: components['layout'],
       children: [
         {
-          path: 'A',
-          name: 'A',
+          path: 'a',
+          name: 'a',
           component: components['A'],
           children: [
             {
-              path: 'A1',
-              name: 'A1',
+              path: 'a1',
+              name: 'a1',
               component: components['A1'],
               children: [
                 {
-                  path: 'A11',
-                  name: 'A11',
+                  path: 'a11',
+                  name: 'a11',
                   component: components['A11']
                 }
               ]
             }
           ]
-        },
-        {
-          path: 'B',
-          name: 'B',
-          component: components['B']
         }
       ]
+    },
+    {
+      path: '/b',
+      name: 'B',
+      component: components['B']
     }
   ]
 })
