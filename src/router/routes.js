@@ -3,34 +3,49 @@ let routes = [
   {
     path: '/',
     name: 'layout',
-    isShow: false,
+    isHidden: false,
     component: components['layout'],
-    // children: [
-    //   {
-    //     path: 'a',
-    //     name: 'a',
-    //     component: components['A'],
-    //     children: [
-    //       {
-    //         path: 'a1',
-    //         name: 'a1',
-    //         component: components['A1'],
-    //         children: [
-    //           {
-    //             path: 'a11',
-    //             name: 'a11',
-    //             component: components['A11']
-    //           }
-    //         ]
-    //       }
-    //     ]
-    //   }
-    // ]
+    meta:{
+      title: '首页'
+    },
+    children: [
+      {
+        path: 'a',
+        name: 'a',
+        component: components['A'],
+        meta:{
+          title: '页面A'
+        },
+        children: [
+          {
+            path: 'a1',
+            name: 'a1',
+            component: components['A1'],
+            meta:{
+              title: '页面A1'
+            },
+            children: [
+              {
+                path: 'a11',
+                name: 'a11',
+                component: components['A11'],
+                meta:{
+                  title: '页面A1'
+                },
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     path: '/b',
     name: 'B',
-    component: components['B']
+    component: components['B'],
+    meta:{
+      title: '页面B'
+    }
   }
 ]
 
