@@ -3,15 +3,24 @@
     <!-- 没有子路由 -->
     <template v-for="item in routes">
       <router-link :to="item.path" :key="item.name" v-if="isSingleMenuShow(item)">
-        <el-menu-item :index="item.name">{{item.meta.title}}</el-menu-item>
+        <el-menu-item :index="item.name">
+          <span v-if="item.meta&&item.meta.icon" class="iconfont" :class="item.meta.icon"></span>
+          <span v-if="item.meta&&item.meta.title" style="margin-left:10px;">{{item.meta.title}}</span>
+        </el-menu-item>
       </router-link>
       <!-- 存在子路由 -->
       <template v-else-if="isMoreMenuShow(item)">
         <el-submenu :index="item.name">
-          <template slot="title">{{item.meta.title}}</template>
+          <template slot="title">
+            <span v-if="item.meta&&item.meta.icon" class="iconfont" :class="item.meta.icon"></span>
+            <span v-if="item.meta&&item.meta.title" style="margin-left:10px;">{{item.meta.title}}</span>
+          </template>
           <template v-for="(child,index) in item.children">
             <router-link :key="child.path" :to="item.path +'/'+ child.path">
-              <el-menu-item>{{child.meta.title}}</el-menu-item>
+              <el-menu-item>
+                <span v-if="child.meta&&child.meta.icon" class="iconfont" :class="child.meta.icon"></span>
+                <span v-if="child.meta&&child.meta.title" style="margin-left:10px;">{{child.meta.title}}</span>
+              </el-menu-item>
             </router-link>
           </template>
         </el-submenu>

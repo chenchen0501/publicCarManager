@@ -54,4 +54,7 @@ export default {
 .main {
   background: red;
 }
+/deep/ .el-submenu .el-menu-item{
+  padding: 0;
+}
 </style>

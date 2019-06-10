@@ -16,7 +16,8 @@ let childrenRoutes = [
     name: 'a',
     component: components['A'],
     meta: {
-      title: '页面A'
+      title: '人员管理',
+      icon: 'iconfl-renyuan'
     },
     children: [
       {
@@ -24,18 +25,9 @@ let childrenRoutes = [
         name: 'a1',
         component: components['A1'],
         meta: {
-          title: '页面A1'
-        },
-        children: [
-          {
-            path: 'a11',
-            name: 'a11',
-            component: components['A11'],
-            meta: {
-              title: '页面A1'
-            }
-          }
-        ]
+          title: '工资管理',
+          icon: 'iconwodegongzi'
+        }
       }
     ]
   },
@@ -44,7 +36,8 @@ let childrenRoutes = [
     name: 'B',
     component: components['B'],
     meta: {
-      title: '页面B'
+      title: '车辆管理',
+      icon: 'iconcheliangguanli'
     }
   }
 ]
