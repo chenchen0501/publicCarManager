@@ -6,7 +6,9 @@
     <el-select v-model="currentRole" class="nav-item nav-select">
       <el-option v-for="item in roles" :value="item.name" :label="item.name" :key="item.id"></el-option>
     </el-select>
-    <svg-icon icon-class="bell" class="nav-head-icon nav-item"/>
+    <el-badge :value="200" :max="99" class="item">
+      <svg-icon icon-class="bell" class="nav-head-icon nav-item"/>
+    </el-badge>
     <svg-icon icon-class="user" class="nav-head-icon nav-item"/>
     <span style="margin-left:5px;">{{currentRole}}</span>
   </div>
@@ -47,7 +49,7 @@ export default {
   .nav-select {
     width: 100px;
   }
-  .nav-button-default{
+  .nav-button-default {
     height: 28px;
     // vertical-align: top;
   }
