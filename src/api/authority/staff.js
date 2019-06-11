@@ -7,3 +7,10 @@ export function getCarList (params) {
     params
   })
 }
+export function addCar (data) {
+  return request({
+    url: '/addCar',
+    method: 'post',
+    data
+  })
+}

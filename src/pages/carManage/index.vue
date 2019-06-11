@@ -26,7 +26,7 @@
         <el-button @click="clear">清空</el-button>
       </el-form>
       <div>
-        <el-button type="primary" @click="">新增车辆</el-button>
+        <el-button type="primary" @click="addCar">新增车辆</el-button>
       </div>
       <el-table :data="tableData">
         <el-table-column type="index" label="序号"></el-table-column>
@@ -36,22 +36,27 @@
         <el-table-column label="车辆颜色" prop="carColor"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button type="text">详情</el-button>
-            <el-button type="text">修改</el-button>
+            <el-button type="text" @click="detail(scope.row)">详情</el-button>
+            <el-button type="text" @click="edit(scope.row)">修改</el-button>
             <el-button type="text" @click="deleteCar(scope.row.id)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
     </AntCard>
+    <addCar :visible="addVisible" @close="addVisible = false" :carData="carData"></addCar>
+    <detail :carData="carData" :visible="detailVisible" @close="detailVisible = false"></detail>
   </div>
 </template>
 <script>
+import detail from "./detail";
 import AntCard from "@/components/AntCard";
 import { getCarList } from "@/api/authority/staff";
-import axios from "axios";
+import addCar from "./addCar";
 export default {
   components: {
-    AntCard
+    AntCard,
+    addCar,
+    detail
   },
   data() {
     return {
@@ -61,13 +66,30 @@ export default {
         { id: 2, name: "黄" },
         { id: 3, name: "蓝" }
       ],
-      listQuery: {}
+      listQuery: {},
+      addVisible: false,
+      detailVisible: false,
+      carData: {}
     };
   },
   mounted() {
     this.getCarList();
   },
   methods: {
+    // 修改
+    edit(val) {
+      this.carData = val;
+      this.addVisible = true;
+    },
+    // 车辆详情
+    detail(val) {
+      this.carData = val;
+      this.detailVisible = true;
+    },
+    // 新增车辆
+    addCar() {
+      this.addVisible = true;
+    },
     deleteCar(id) {
       this.$confirm("是否删除该车辆?", "提示", {
         confirmButtonText: "确定",
