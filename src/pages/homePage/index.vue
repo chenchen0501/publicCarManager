@@ -1,23 +1,26 @@
 <template>
   <div>
     <AntCard>
-      <div>234</div>
+      <div class="bg"></div>
     </AntCard>
   </div>
 </template>
 <script>
-import AntCard from '@/components/AntCard'
+import AntCard from "@/components/AntCard";
 export default {
-  components:{
+  components: {
     AntCard
   },
-  data(){
-    return{
-
-    }
+  data() {
+    return {};
   }
-}
+};
 </script>
 <style lang="less" scoped>
-
+.bg {
+  background: url("/static/public-car-main.png") no-repeat center #fff;
+  height: calc(100vh - 150px);
+  text-align: center;
+  background-size: contain;
+}
 </style>

@@ -43,6 +43,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .mainPageItem{
+  text-align: center;
   width: 200px;
   height: 56px;
   line-height: 56px;

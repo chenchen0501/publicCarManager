@@ -32,9 +32,9 @@ let childrenRoutes = [
     ]
   },
   {
-    path: '/b',
-    name: 'B',
-    component: components['B'],
+    path: '/carManage',
+    name: 'carManage',
+    component: components['carManage'],
     meta: {
       title: '车辆管理',
       icon: 'iconcheliangguanli'

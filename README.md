@@ -8,3 +8,5 @@
 1.  vue
 2.  vuex
 3.  vue-router
+4.  svg使用
+5.  
