@@ -4,5 +4,6 @@ export default {
   A1: () => import('@/pages/A1'),
   A11: () => import('@/pages/A11'),
   A2: () => import('@/pages/A2'),
-  B: () => import('@/pages/B')
+  B: () => import('@/pages/B'),
+  homePage: () => import('@/pages/homePage')
 }

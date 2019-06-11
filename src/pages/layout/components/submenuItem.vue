@@ -17,7 +17,7 @@
           </template>
           <template v-for="(child,index) in item.children">
             <router-link :key="child.path" :to="item.path +'/'+ child.path">
-              <el-menu-item>
+              <el-menu-item :index="child.meta.title">
                 <span v-if="child.meta&&child.meta.icon" class="iconfont" :class="child.meta.icon"></span>
                 <span v-if="child.meta&&child.meta.title" style="margin-left:10px;">{{child.meta.title}}</span>
               </el-menu-item>

@@ -39,6 +39,12 @@ let childrenRoutes = [
       title: '车辆管理',
       icon: 'iconcheliangguanli'
     }
+  },
+  {
+    path: '/home',
+    name: 'home',
+    isHidden: true,
+    component: components['homePage']
   }
 ]
 // 合并子路由

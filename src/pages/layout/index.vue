@@ -1,9 +1,12 @@
 <template>
   <div>
     <el-container>
-      <el-header class="header" height="50px">Header</el-header>
-      <el-container>
+      <el-header class="header" height="50px">
+        <headerBar></headerBar>
+      </el-header>
+      <el-container class="main-container">
         <el-aside class="siderBar leftBar" width="200px">
+          <div class="mainPageItem" @click="$router.push('/home')">无锡公交管理方案</div>
           <el-menu
             class="el-menu-vertical-demo"
             background-color="#545c64"
@@ -21,14 +24,15 @@
   </div>
 </template>
 <script>
+import headerBar from './components/headerBar'
 import submenuItem from "./components/submenuItem";
 import { childrenRoutes, mainRoute } from "@/router/routes";
 export default {
   components: {
-    submenuItem
+    submenuItem,
+    headerBar
   },
   created() {
-    console.log("routes:", mainRoute);
   },
   data() {
     return {
@@ -38,8 +42,18 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.mainPageItem{
+  width: 200px;
+  height: 56px;
+  line-height: 56px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  background: #545C7C;
+}
 .header{
-  background: blue;
+  background: #fff;
+  margin-left: 200px;
 }
 /deep/ .el-menu-item  {
   width: 200px;
@@ -48,13 +62,19 @@ export default {
   width: 200px;
 }
 .leftBar{
+  position: fixed;
+  left: 0;
+  top: 0;
   height: 100vh;
   background: #545c64;
 }
 .main {
-  background: red;
+  margin-left: 200px;
 }
 /deep/ .el-submenu .el-menu-item{
   padding: 0;
+}
+.main-container{
+  height: calc(100vh - 50px);
 }
 </style>

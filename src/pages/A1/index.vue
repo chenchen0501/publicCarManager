@@ -1,8 +1,14 @@
 <template>
-  <div>A-1页面</div>
+  <div>
+    <AntCard>A-1页面</AntCard>
+  </div>
 </template>
 <script>
+import AntCard from "@/components/AntCard";
 export default {
+  components: {
+    AntCard
+  },
   data() {
     return {};
   }
