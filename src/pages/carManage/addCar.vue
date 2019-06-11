@@ -33,7 +33,7 @@
         </el-col>
         <el-col :span="12">
           <el-form-item label="购买时间" prop="buyDate">
-            <el-date-picker v-model="form.buyDate" type="date" placeholder="选择日期" class="itemWidth"></el-date-picker>
+            <el-date-picker v-model="form.buyDataTime" type="date" placeholder="选择日期" class="itemWidth"></el-date-picker>
           </el-form-item>
         </el-col>
       </el-row>
