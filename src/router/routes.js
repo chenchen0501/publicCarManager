@@ -14,7 +14,7 @@ let childrenRoutes = [
   {
     path: '/a',
     name: 'a',
-    component: components['A'],
+    component: components['staffManage'],
     meta: {
       title: '人员管理',
       icon: 'iconfl-renyuan'
@@ -23,7 +23,7 @@ let childrenRoutes = [
       {
         path: 'a1',
         name: 'a1',
-        component: components['A1'],
+        component: components['salary'],
         meta: {
           title: '工资管理',
           icon: 'iconwodegongzi'

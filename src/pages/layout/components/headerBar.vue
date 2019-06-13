@@ -1,7 +1,7 @@
 <template>
   <div class="right">
     <div class="nav-button-default">
-      <el-button>设为默认</el-button>
+      <el-button @click="setDefaultRole">设为默认</el-button>
     </div>
     <el-select v-model="currentRole" class="nav-item nav-select">
       <el-option v-for="item in roles" :value="item.name" :label="item.name" :key="item.id"></el-option>
@@ -15,6 +15,7 @@
 </template>
 <script>
 import svgIcon from "@/components/SvgIcon";
+import { mapMutations, mapGetters, mapActions } from "vuex";
 export default {
   components: {
     svgIcon
@@ -30,7 +31,31 @@ export default {
       currentRole: "人事"
     };
   },
-  methods: {}
+  computed:{
+    // ...mapGetters(['GET_ROLE'])
+  },
+  created() {
+    // this.currentRole = this.GET_ROLE
+    this.changeNewRoleAction('司机')
+    // this.$store.dispatch('changeNewRoleAction',  await this.getDefaultRole())
+  },
+  methods: {
+    ...mapMutations(["changDefaultRole"]),
+    ...mapActions(['changeNewRoleAction']),
+    // 设置默认角色
+    setDefaultRole() {
+      this.changDefaultRole(this.currentRole);
+      this.$message.success("已设置为默认角色");
+    },
+    // 模拟从后台获取默认角色 --异步
+    getDefaultRole(){
+      return new Promise((rs,rj)=>{
+        setTimeout(() => {
+          rs('司机')
+        }, 100);
+      })
+    }
+  }
 };
 </script>
 

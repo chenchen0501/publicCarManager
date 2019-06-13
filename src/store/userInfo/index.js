@@ -2,7 +2,7 @@ const userInfo = {
   state: {
     userName: '',
     pw: '',
-    roleId: ''
+    role: '人事'
   },
   getters: {
     GET_USERNAME (state) {
@@ -11,15 +11,23 @@ const userInfo = {
     GET_PW (state) {
       return state.pw
     },
-    GET_ROLEID (state) {
-      return state.roleId
+    GET_ROLE (state) {
+      return state.role
     }
   },
   mutations: {
-
+    // 修改新密码
+    changeNewPw(state, newPw){
+      state.pw = newPw
+    },
+    changDefaultRole(state, newRole){
+      state.role = newRole
+    }
   },
   actions: {
-
+    changeNewRoleAction({commit}, newRole){
+      commit('changDefaultRole', newRole)
+    }
   }
 }
 

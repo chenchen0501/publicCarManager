@@ -9,6 +9,7 @@ import '@/style/index.css'
 import '@/icons/font/iconfont.css'
 import '@/icons' // icon
 import '@/routeDefend'
+import store from '@/store' 
 
 Vue.use(ElementUI, {
   size: 'mini'
@@ -22,6 +23,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
