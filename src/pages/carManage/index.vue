@@ -88,6 +88,7 @@ export default {
     },
     // 新增车辆
     addCar() {
+      this.carData = {}
       this.addVisible = true;
     },
     deleteCar(id) {

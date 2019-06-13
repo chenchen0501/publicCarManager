@@ -17,14 +17,16 @@
           </el-menu>
         </el-aside>
         <el-main class="main">
-          <router-view/>
+          <keep-alive>
+            <router-view/>
+          </keep-alive>
         </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
 <script>
-import headerBar from './components/headerBar'
+import headerBar from "./components/headerBar";
 import submenuItem from "./components/submenuItem";
 import { childrenRoutes, mainRoute } from "@/router/routes";
 export default {
@@ -32,8 +34,7 @@ export default {
     submenuItem,
     headerBar
   },
-  created() {
-  },
+  created() {},
   data() {
     return {
       routes: childrenRoutes
@@ -42,7 +43,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.mainPageItem{
+.mainPageItem {
   text-align: center;
   width: 200px;
   height: 56px;
@@ -50,19 +51,19 @@ export default {
   color: #fff;
   font-size: 14px;
   cursor: pointer;
-  background: #545C7C;
+  background: #545c7c;
 }
-.header{
+.header {
   background: #fff;
   margin-left: 200px;
 }
-/deep/ .el-menu-item  {
+/deep/ .el-menu-item {
   width: 200px;
 }
-/deep/ .el-submenu{
+/deep/ .el-submenu {
   width: 200px;
 }
-.leftBar{
+.leftBar {
   position: fixed;
   left: 0;
   top: 0;
@@ -72,10 +73,10 @@ export default {
 .main {
   margin-left: 200px;
 }
-/deep/ .el-submenu .el-menu-item{
+/deep/ .el-submenu .el-menu-item {
   padding: 0;
 }
-.main-container{
+.main-container {
   height: calc(100vh - 50px);
 }
 </style>

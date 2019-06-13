@@ -33,7 +33,12 @@
         </el-col>
         <el-col :span="12">
           <el-form-item label="购买时间" prop="buyDate">
-            <el-date-picker v-model="form.buyDataTime" type="date" placeholder="选择日期" class="itemWidth"></el-date-picker>
+            <el-date-picker
+              v-model="form.buyDataTime"
+              type="date"
+              placeholder="选择日期"
+              class="itemWidth"
+            ></el-date-picker>
           </el-form-item>
         </el-col>
       </el-row>
@@ -49,9 +54,10 @@ import dialogHandle from "@/mixins/dialogHandle";
 import { addCar } from "@/api/authority/staff";
 export default {
   mixins: [dialogHandle],
-  props:['carData'],
+  props: ["carData"],
   data() {
     return {
+      isEdit: false,
       form: {},
       colors: [
         { id: 1, name: "红" },
@@ -62,11 +68,12 @@ export default {
         driver: [
           { required: true, message: "请输入司机姓名", trigger: "blur" }
         ],
-        buyDate: [
-          { required: true, message: "请输入购买日期", trigger: "change" }
-        ]
+        age: [{ required: true, message: "请输入驾龄", trigger: "blur" }]
       }
     };
+  },
+  created() {
+    this.isEdit = !!this.carData;
   },
   methods: {
     submit() {
@@ -84,12 +91,15 @@ export default {
       this.form = {};
     },
     handleOpen() {
-      this.form = this.carData
+      if (this.isEdit) {
+        this.form = this.carData;
+      } else {
+        this.form = {};
+      }
     },
     handleClose() {
+      this.$refs.form.resetFields();
       this.$emit("close");
-      this.initData();
-      this.$refs.form.clearValidate();
     }
   }
 };

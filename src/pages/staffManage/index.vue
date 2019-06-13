@@ -1,6 +1,8 @@
 <template>
   <div>
-    <AntCard>A页面</AntCard>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
 <script>
