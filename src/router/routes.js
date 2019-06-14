@@ -24,7 +24,7 @@ let childrenRoutes = [
         path: 'driver',
         name: 'driver',
         components: components['driver'],
-        meta:{
+        meta: {
           title: '司机管理',
           icon: 'iconsiji-'
         }
