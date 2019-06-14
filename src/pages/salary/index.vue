@@ -5,6 +5,11 @@
         <el-form-item label="姓名">
           <el-input v-model="listQuery.driver"></el-input>
         </el-form-item>
+        <el-form-item label="职位">
+          <el-select v-model="listQuery.role">
+            <el-option v-for="item in roles" :value="item.name" :label="item.name" :key="item.id"></el-option>
+          </el-select>
+        </el-form-item>
         <el-form-item label="出生时间">
           <el-date-picker
             v-model="listQuery.buyDate"
@@ -22,15 +27,15 @@
       </div>
       <el-table :data="tableData" @selection-change="handleSelectionChange">
         <el-table-column type="selection" label="全选"></el-table-column>
-        <el-table-column label="姓名" prop="driver"></el-table-column>
+        <el-table-column label="姓名" prop="name"></el-table-column>
         <el-table-column label="年龄" prop="age"></el-table-column>
         <el-table-column label="职位" prop="job"></el-table-column>
         <el-table-column label="实发工资" prop="salary"></el-table-column>
-        <el-table-column label="出生日期" prop="buyDataTime"></el-table-column>
+        <el-table-column label="出生日期" prop="birthDate"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button type="text" @click="detail(scope.row)">详情</el-button>
-            <el-button type="text" @click="edit(scope.row)">修改工资</el-button>
+            <el-button type="text">详情</el-button>
+            <el-button type="text">修改工资</el-button>
             <el-button type="text" @click="deliverMoney(scope.row.id)">发工资</el-button>
           </template>
         </el-table-column>
@@ -40,13 +45,19 @@
 </template>
 <script>
 import AntCard from "@/components/AntCard";
-import { getCarList } from "@/api/authority/staff";
+import { salaryList } from "@/api/authority/staff";
 export default {
   components: {
     AntCard
   },
   data() {
     return {
+      roles: [
+        { id: 1, name: "人事" },
+        { id: 2, name: "司机" },
+        { id: 3, name: "经理" },
+        { id: 4, name: "会计" }
+      ],  // 可由后台查出来
       chooseStaffs: [],
       tableData: [],
       colors: [
@@ -61,26 +72,11 @@ export default {
     };
   },
   mounted() {
-    this.getCarList();
+    this.salaryList();
   },
   methods: {
     handleSelectionChange(val) {
       this.chooseStaffs = val;
-    },
-    // 修改
-    edit(val) {
-      this.carData = val;
-      this.addVisible = true;
-    },
-    // 车辆详情
-    detail(val) {
-      this.carData = val;
-      this.detailVisible = true;
-    },
-    // 新增车辆
-    addCar() {
-      this.carData = {};
-      this.addVisible = true;
     },
     deliverMoney(id) {
       this.$confirm("是否确定发工资?", "提示", {
@@ -118,20 +114,20 @@ export default {
         });
     },
     // 获取车辆列表
-    getCarList() {
-      getCarList().then(res => {
+    salaryList() {
+      salaryList().then(res => {
         this.tableData = res.data;
       });
     },
     // 根据条件搜索
     search() {
-      getCarList(this.listQuery).then(res => {
+      salaryList(this.listQuery).then(res => {
         this.tableData = res.data;
       });
     },
     clear() {
       this.listQuery = {};
-      this.getCarList();
+      this.salaryList();
     }
   }
 };

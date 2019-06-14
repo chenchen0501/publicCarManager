@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AntCard>司机页面</AntCard>
+   123
   </div>
 </template>
 <script>

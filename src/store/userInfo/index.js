@@ -17,15 +17,15 @@ const userInfo = {
   },
   mutations: {
     // 修改新密码
-    changeNewPw(state, newPw){
+    changeNewPw (state, newPw) {
       state.pw = newPw
     },
-    changDefaultRole(state, newRole){
+    changDefaultRole (state, newRole) {
       state.role = newRole
     }
   },
   actions: {
-    changeNewRoleAction({commit}, newRole){
+    async changeNewRoleAction ({commit}, newRole) {
       commit('changDefaultRole', newRole)
     }
   }

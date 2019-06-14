@@ -4,5 +4,5 @@ export default {
   salary: () => import('@/pages/salary'),
   carManage: () => import('@/pages/carManage'),
   homePage: () => import('@/pages/homePage'),
-  driver: () => import('@/pages/driverManager')
+  driver: () => import('@/pages/drivers')
 }

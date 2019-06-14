@@ -46,7 +46,7 @@ export default {
   },
   created() {
     // this.currentRole = this.GET_ROLE
-    this.changeNewRoleAction("司机");
+    // this.changeNewRoleAction(await this.getDefaultRole());
     // this.$store.dispatch('changeNewRoleAction',  await this.getDefaultRole())
   },
   methods: {

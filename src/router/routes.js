@@ -21,15 +21,6 @@ let childrenRoutes = [
     },
     children: [
       {
-        path: 'driver',
-        name: 'driver',
-        components: components['driver'],
-        meta: {
-          title: '司机管理',
-          icon: 'iconsiji-'
-        }
-      },
-      {
         path: 'a1',
         name: 'a1',
         component: components['salary'],
@@ -47,6 +38,15 @@ let childrenRoutes = [
     meta: {
       title: '车辆管理',
       icon: 'iconcheliangguanli'
+    }
+  },
+  {
+    path: '/driver',
+    name: 'driver',
+    components: components['driver'],
+    meta: {
+      title: '司机管理',
+      icon: 'iconsiji-'
     }
   },
   {
