@@ -46,7 +46,7 @@ export default {
   },
   created() {
     // this.currentRole = this.GET_ROLE
-    // this.changeNewRoleAction(await this.getDefaultRole());
+    this.changeNewRoleAction();
     // this.$store.dispatch('changeNewRoleAction',  await this.getDefaultRole())
   },
   methods: {

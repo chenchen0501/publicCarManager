@@ -1,8 +1,9 @@
+import {getDefaultRole} from '@/api/authority/staff'
 const userInfo = {
   state: {
     userName: '',
     pw: '',
-    role: '人事'
+    role: '司机'
   },
   getters: {
     GET_USERNAME (state) {
@@ -25,8 +26,10 @@ const userInfo = {
     }
   },
   actions: {
-    async changeNewRoleAction ({commit}, newRole) {
-      commit('changDefaultRole', newRole)
+    changeNewRoleAction ({commit}) {
+      getDefaultRole().then(res => {
+        commit('changDefaultRole', res.data.role)
+      })
     }
   }
 }

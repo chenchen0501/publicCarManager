@@ -26,3 +26,11 @@ export function salaryList (params) {
     params
   })
 }
+// 获取默认角色
+export function getDefaultRole (params) {
+  return request({
+    url: '/getRole',
+    method: 'get',
+    params
+  })
+}
