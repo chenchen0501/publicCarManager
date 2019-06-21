@@ -5,11 +5,12 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import '@/style/index.css'
+import '@/styles/index.css'
+import '@/styles/element-primary-color.scss'
 import '@/icons/font/iconfont.css'
 import '@/icons' // icon
 import '@/routeDefend'
-import store from '@/store' 
+import store from '@/store'
 
 Vue.use(ElementUI, {
   size: 'mini'

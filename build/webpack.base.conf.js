@@ -36,6 +36,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      '+': resolve('src/styles')
     }
   },
   module: {
@@ -83,7 +84,7 @@ module.exports = {
         options: {
           symbolId: 'icon-[name]'
         }
-      },
+      }
     ]
   },
   node: {

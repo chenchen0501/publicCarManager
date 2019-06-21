@@ -26,7 +26,7 @@
         <el-button @click="clear">清空</el-button>
       </el-form>
       <div>
-        <el-button type="primary" @click="addCar">新增车辆</el-button>
+        <el-button type="primary" @click="addCar" class="add">新增车辆</el-button>
       </div>
       <el-table :data="tableData">
         <el-table-column type="index" label="序号"></el-table-column>
@@ -88,7 +88,7 @@ export default {
     },
     // 新增车辆
     addCar() {
-      this.carData = {}
+      this.carData = {};
       this.addVisible = true;
     },
     deleteCar(id) {
@@ -130,4 +130,5 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+@import "~+/add.less";
 </style>
