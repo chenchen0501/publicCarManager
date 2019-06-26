@@ -1,4 +1,5 @@
 import components from './components'
+// 基础routes
 let mainRoute = [
   {
     path: '/',
@@ -9,8 +10,27 @@ let mainRoute = [
     meta: {
       title: '首页'
     }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    isHidden: true,
+    component: components['login'],
+    meta: {
+      title: '登录'
+    }
+  },
+  {
+    path: '/404',
+    name: '404',
+    isHidden: true,
+    component: components['404'],
+    meta: {
+      title: 'noFind'
+    }
   }
 ]
+// 动态routes
 let childrenRoutes = [
   {
     path: '/a',
