@@ -3,6 +3,7 @@ let mainRoute = [
   {
     path: '/',
     name: 'layout',
+    redirect: '/home',
     isHidden: true,
     component: components['layout'],
     meta: {
