@@ -1,12 +1,16 @@
 import {getDefaultRole} from '@/api/authority/staff'
 import {login} from '@/api/user/user'
 import {setToken, setUserInfo} from '@/utils/auth'
+import router from '@/router'
+import {childrenRoutes} from '@/router/routes'
+
 const userInfo = {
   state: {
     userName: '',
     pw: '',
     role: '司机',
-    token: ''
+    token: '',
+    addRoutes: []
   },
   getters: {
     GET_USERNAME (state) {
@@ -35,6 +39,9 @@ const userInfo = {
     },
     changeToken (state, token) {
       state.token = token
+    },
+    changeAddRoutes (state, routes) {
+      state.addRoutes = routes
     }
   },
   actions: {
@@ -55,6 +62,8 @@ const userInfo = {
           commit('changeUserName', userInfo.userName)
           commit('changeNewPw', userInfo.pw)
           commit('changeToken', res.data.token)
+          commit('changeAddRoutes', res.data.routes)
+
           resolve()
         }).catch(error => {
           reject(error)

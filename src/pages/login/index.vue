@@ -21,6 +21,9 @@
 </template>
 <script>
 import store from "@/store";
+import { childrenRoutes } from "@/router/routes";
+import Router from 'vue-router'
+
 export default {
   data() {
     return {
@@ -34,15 +37,46 @@ export default {
     };
   },
   methods: {
+    // 登录
     doLogin() {
       this.$refs.form.validate(valid => {
         if (valid) {
           store.dispatch("login", this.form).then(() => {
             this.$message.success("登录成功");
-            this.$router.push("/");
+            if (this.$store.state.userInfo.addRoutes.length)
+              this.addRoutesByPermission();
+            this.$router.push("/home");
           });
         }
       });
+    },
+    // 动态添加路由
+    addRoutesByPermission() {
+      // 动态添加路由
+      let afterFilterRoutes = this.filterRoutes(
+        childrenRoutes,
+        this.$store.state.userInfo.addRoutes
+      );
+      this.$router.options.routes[0].children = afterFilterRoutes
+      console.log('initRoutes',this.$router.options.routes[0])
+      let routes = this.$router.options.routes
+      this.$router.match =  new Router({routes}).match
+      this.$router.addRoutes(this.$router.options.routes);
+    },
+    // 过滤路由，将后台返回的动态路由跟现有路由进行比较过滤
+    filterRoutes(AllRoutes, permissionRoutes) {
+      let afterFilterRoutes = [];
+      AllRoutes.forEach(ai => {
+        permissionRoutes.forEach(pi => {
+          if (ai.name === pi.name) {
+            if (ai.children && ai.children.length > 0) {
+              ai.children = this.filterRoutes(ai.children, pi.children);
+            }
+            afterFilterRoutes.push(ai);
+          }
+        });
+      });
+      return afterFilterRoutes;
     }
   }
 };

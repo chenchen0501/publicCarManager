@@ -4,7 +4,7 @@ let mainRoute = [
   {
     path: '/',
     name: 'layout',
-    redirect: '/home',
+    redirect: '/login',
     isHidden: true,
     component: components['layout'],
     meta: {
@@ -30,7 +30,7 @@ let mainRoute = [
     }
   }
 ]
-// 动态routes
+// 全部routes
 let childrenRoutes = [
   {
     path: '/a',
@@ -78,6 +78,6 @@ let childrenRoutes = [
   }
 ]
 // 合并子路由
-mainRoute[0].children = childrenRoutes
+// mainRoute[0].children = childrenRoutes
 
 export {childrenRoutes, mainRoute}
