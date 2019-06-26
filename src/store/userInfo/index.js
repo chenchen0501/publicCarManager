@@ -1,6 +1,6 @@
 import {getDefaultRole} from '@/api/authority/staff'
 import {login} from '@/api/user/user'
-import {setToken} from '@/utils/auth'
+import {setToken, setUserInfo} from '@/utils/auth'
 const userInfo = {
   state: {
     userName: '',
@@ -23,6 +23,9 @@ const userInfo = {
     }
   },
   mutations: {
+    changeUserName (state, name) {
+      state.userName = name
+    },
     // 修改新密码
     changeNewPw (state, newPw) {
       state.pw = newPw
@@ -43,10 +46,19 @@ const userInfo = {
     },
     // 登录，保存token
     login ({commit}, userInfo) {
-      login(userInfo).then(res => {
-        // 设置cookie中的token值
-        setToken(res.data.token)
-        commit('changeToken', res.data.token)
+      return new Promise((resolve, reject) => {
+        login(userInfo).then(res => {
+          // 设置cookie中的userInfo
+          setUserInfo(userInfo)
+          // 设置cookie中的token值
+          setToken(res.data.token)
+          commit('changeUserName', userInfo.userName)
+          commit('changeNewPw', userInfo.pw)
+          commit('changeToken', res.data.token)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
       })
     }
   }

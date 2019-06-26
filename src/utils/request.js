@@ -4,6 +4,8 @@ import {
   Message,
   MessageBox
 } from 'element-ui'
+import {getToken} from '@/utils/auth'
+import store from '@/store'
 
 // 创建axios实例
 export default function createService (baseURL) {
@@ -11,6 +13,9 @@ export default function createService (baseURL) {
     baseURL: baseURL,
     timeout: 100000 // 请求超时时间
   })
+  // if (store.) {
+
+  // }
   // request拦截器
   service.interceptors.request.use(config => {
     // 处理axios get请求数组多了[]的问题

@@ -70,7 +70,6 @@ let childrenRoutes = [
       icon: 'iconcheliangguanli'
     }
   },
-
   {
     path: '/home',
     name: 'home',

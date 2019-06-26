@@ -2,9 +2,10 @@
 import request from '@/utils/authorityRequest'
 
 // 获取token
-export function login () {
+export function login (params) {
   return request({
     url: '/login',
-    method: 'get'
+    method: 'get',
+    params
   })
 }

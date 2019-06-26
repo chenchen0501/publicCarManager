@@ -48,6 +48,7 @@
   </div>
 </template>
 <script>
+import store from "@/store";
 import detail from "./detail";
 import AntCard from "@/components/AntCard";
 import { getCarList } from "@/api/authority/staff";
@@ -73,6 +74,7 @@ export default {
     };
   },
   mounted() {
+    console.log("token11", store.state.userInfo.role);
     this.getCarList();
   },
   methods: {

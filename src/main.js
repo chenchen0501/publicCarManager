@@ -9,7 +9,7 @@ import '@/styles/index.css'
 import '@/styles/element-primary-color.scss'
 import '@/icons/font/iconfont.css'
 import '@/icons' // icon
-import '@/routeDefend'
+import '@/permission'
 import store from '@/store'
 
 Vue.use(ElementUI, {

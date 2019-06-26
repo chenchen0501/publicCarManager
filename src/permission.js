@@ -6,9 +6,14 @@ router.beforeEach((to, from, next) => {
   console.log('token', getToken())
   // cookie中有token则进入，没有进入登录界面
   if (getToken()) {
-    next('/')
+    if (from.path === 'login') {
+      next('/')
+    } else {
+      next()
+    }
   } else {
-    if (whiteList.indexOf(to.path) !== -1) {
+    console.log('to', to.path)
+    if (whiteList.includes(to.path)) {
       next()
     } else {
       next('/login')
