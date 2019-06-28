@@ -3,7 +3,7 @@
     <div class="nav-button-default">
       <el-button @click="setDefaultRole">设为默认</el-button>
     </div>
-    <el-select v-model="currentRole" class="nav-item nav-select">
+    <el-select v-model="currentRole" @change="roleChange" class="nav-item nav-select">
       <el-option v-for="item in roles" :value="item.name" :label="item.name" :key="item.id"></el-option>
     </el-select>
     <el-badge :value="messageNum" :max="99" class="item">
@@ -50,6 +50,10 @@ export default {
     // this.$store.dispatch('changeNewRoleAction',  await this.getDefaultRole())
   },
   methods: {
+    // 切换角色
+    roleChange(val){
+      
+    },
     ...mapMutations(["changDefaultRole"]),
     ...mapActions(["changeNewRoleAction"]),
     // 设置默认角色
