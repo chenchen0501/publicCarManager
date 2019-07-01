@@ -1,14 +1,24 @@
 import components from './components'
 
-const toRoute = [{
+let toRoute = [{
   path: '/to',
   name: 'to',
   component: components['layout'],
-  children: []
+  children: [
+    {
+      path: 'car',
+      name: 'carManage',
+      component: components['carManage'],
+      meta: {
+        title: '车辆管理',
+        icon: 'iconcheliangguanli'
+      }
+    }
+  ]
 }]
 
 // 基础routes
-let mainRoute = [
+let baseRoutes = [
   {
     path: '/layout',
     name: 'layout',
@@ -59,7 +69,7 @@ let mainRoute = [
   }
 ]
 // 全部routes
-let childrenRoutes = [
+let syncRoutes = [
   // {
   //   path: 'a',
   //   name: 'a',
@@ -89,28 +99,15 @@ let childrenRoutes = [
   //     }
   //   ]
   // },
-  {
-    path: 'carManage',
-    name: 'carManage',
-    component: components['carManage'],
-    meta: {
-      title: '车辆管理',
-      icon: 'iconcheliangguanli'
-    }
-  }
+  // {
+  //   path: 'carManage',
+  //   name: 'carManage',
+  //   component: components['carManage'],
+  //   meta: {
+  //     title: '车辆管理',
+  //     icon: 'iconcheliangguanli'
+  //   }
+  // }
 ]
-let role1 = [
-  {
-    path: 'driver',
-    name: 'driver',
-    component: components['driver'],
-    meta: {
-      title: '司机管理',
-      icon: 'iconsiji-'
-    }
-  }
-]
-// 合并子路由
-// mainRoute[0].children.push(...childrenRoutes)
 
-export {childrenRoutes, mainRoute, toRoute, role1}
+export {baseRoutes, syncRoutes, toRoute}

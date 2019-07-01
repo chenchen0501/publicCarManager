@@ -28,7 +28,7 @@
 <script>
 import headerBar from "./components/headerBar";
 import submenuItem from "./components/submenuItem";
-import { childrenRoutes, mainRoute } from "@/router/routes";
+import { syncRoutes } from "@/router/routes";
 export default {
   components: {
     submenuItem,
@@ -36,11 +36,11 @@ export default {
   },
   created() {},
   mounted(){
-    // console.log('menuRoutes:',this.$store.state.userInfo.routes)
+    console.log('menuRoutes:',syncRoutes)
   },
   data() {
     return {
-      routes: this.$store.state.userInfo.routes
+      routes: syncRoutes
     };
   }
 };

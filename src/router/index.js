@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import {mainRoute} from './routes'
+import {baseRoutes} from './routes'
 Vue.use(Router)
 
-export default new Router({routes: mainRoute})
+export default new Router({routes: baseRoutes})

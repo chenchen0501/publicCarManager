@@ -21,7 +21,7 @@
 </template>
 <script>
 import store from "@/store";
-import { childrenRoutes } from "@/router/routes";
+// import { childrenRoutes } from "@/router/routes";  
 import Router from 'vue-router'
 
 export default {

@@ -2,7 +2,7 @@ import {getDefaultRole} from '@/api/authority/staff'
 import {login} from '@/api/user/user'
 import {setToken, setUserInfo} from '@/utils/auth'
 import router from '@/router'
-import {childrenRoutes, mainRoute, toRoute} from '@/router/routes'
+import {toRoute} from '@/router/routes'
 
 // 过滤路由，将后台返回的动态路由跟现有路由进行比较过滤
 function filterRoutes (AllRoutes, permissionRoutes) {
@@ -27,7 +27,7 @@ const userInfo = {
     token: '',
     addRoutes: [], // 过滤后的rouets
     asyncRoutes: [], // 后台返回的routes
-    routes: childrenRoutes
+    // routes: childrenRoutes
   },
   getters: {
     GET_USERNAME (state) {
@@ -92,13 +92,6 @@ const userInfo = {
     getAsyncRoutes ({commit, state}) {
       return new Promise((resolve, reject) => {
         login().then(res => {
-          // let afterFilterRoutes = filterRoutes(
-          //   childrenRoutes,
-          //   res.data.routes
-          // )
-          toRoute[0].children = childrenRoutes
-          console.log('toRoutes', toRoute)
-          commit('changeAddRoutes', toRoute)
         })
       })
     }
