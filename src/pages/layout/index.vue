@@ -6,7 +6,7 @@
       </el-header>
       <el-container class="main-container">
         <el-aside class="siderBar leftBar" width="200px">
-          <div class="mainPageItem" @click="$router.push('/home')">无锡公交管理方案</div>
+          <div class="mainPageItem" @click="$router.push('/layout/home')">无锡公交管理方案</div>
           <el-menu
             class="el-menu-vertical-demo"
             background-color="#545c64"
@@ -35,9 +35,12 @@ export default {
     headerBar
   },
   created() {},
+  mounted(){
+    // console.log('menuRoutes:',this.$store.state.userInfo.routes)
+  },
   data() {
     return {
-      routes: childrenRoutes
+      routes: this.$store.state.userInfo.routes
     };
   }
 };

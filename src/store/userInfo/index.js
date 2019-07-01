@@ -2,15 +2,32 @@ import {getDefaultRole} from '@/api/authority/staff'
 import {login} from '@/api/user/user'
 import {setToken, setUserInfo} from '@/utils/auth'
 import router from '@/router'
-import {childrenRoutes} from '@/router/routes'
+import {childrenRoutes, mainRoute, toRoute} from '@/router/routes'
 
+// 过滤路由，将后台返回的动态路由跟现有路由进行比较过滤
+function filterRoutes (AllRoutes, permissionRoutes) {
+  let afterFilterRoutes = []
+  AllRoutes.forEach(ai => {
+    permissionRoutes.forEach(pi => {
+      if (ai.name === pi.name) {
+        if (ai.children && ai.children.length > 0) {
+          ai.children = filterRoutes(ai.children, pi.children)
+        }
+        afterFilterRoutes.push(ai)
+      }
+    })
+  })
+  return afterFilterRoutes
+}
 const userInfo = {
   state: {
     userName: '',
     pw: '',
     role: '司机',
     token: '',
-    addRoutes: []
+    addRoutes: [], // 过滤后的rouets
+    asyncRoutes: [], // 后台返回的routes
+    routes: childrenRoutes
   },
   getters: {
     GET_USERNAME (state) {
@@ -42,6 +59,9 @@ const userInfo = {
     },
     changeAddRoutes (state, routes) {
       state.addRoutes = routes
+    },
+    changeAsyncRoutes (state, routes) {
+      state.asyncRoutes = routes
     }
   },
   actions: {
@@ -62,11 +82,23 @@ const userInfo = {
           commit('changeUserName', userInfo.userName)
           commit('changeNewPw', userInfo.pw)
           commit('changeToken', res.data.token)
-          commit('changeAddRoutes', res.data.routes)
-
+          commit('changeAsyncRoutes', res.data.routes)
           resolve()
         }).catch(error => {
           reject(error)
+        })
+      })
+    },
+    getAsyncRoutes ({commit, state}) {
+      return new Promise((resolve, reject) => {
+        login().then(res => {
+          // let afterFilterRoutes = filterRoutes(
+          //   childrenRoutes,
+          //   res.data.routes
+          // )
+          toRoute[0].children = childrenRoutes
+          console.log('toRoutes', toRoute)
+          commit('changeAddRoutes', toRoute)
         })
       })
     }
