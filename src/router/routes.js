@@ -5,15 +5,6 @@ let toRoute = [{
   name: 'to',
   component: components['layout'],
   children: [
-    {
-      path: 'car',
-      name: 'carManage',
-      component: components['carManage'],
-      meta: {
-        title: '车辆管理',
-        icon: 'iconcheliangguanli'
-      }
-    }
   ]
 }]
 
@@ -31,15 +22,6 @@ let baseRoutes = [
         component: components['homePage'],
         meta: {
           title: '首页'
-        }
-      },
-      {
-        path: 'a1',
-        name: 'a1',
-        component: components['salary'],
-        meta: {
-          title: '工资管理',
-          icon: 'iconwodegongzi'
         }
       }
     ]
@@ -68,6 +50,7 @@ let baseRoutes = [
     }
   }
 ]
+
 // 全部routes
 let syncRoutes = [
   // {
@@ -110,4 +93,27 @@ let syncRoutes = [
   // }
 ]
 
-export {baseRoutes, syncRoutes, toRoute}
+let role1 = [
+    {
+    path: 'car',
+    name: 'carManage',
+    component: components['carManage'],
+    meta: {
+      title: '车辆管理',
+      icon: 'iconcheliangguanli'
+    }
+  }
+]
+
+let role2 = [
+  {
+    path: 'a1',
+    name: 'a1',
+    component: components['salary'],
+    meta: {
+      title: '工资管理',
+      icon: 'iconwodegongzi'
+    }
+  }
+]
+export {baseRoutes, syncRoutes, toRoute, role1, role2}

@@ -23,9 +23,10 @@ const userInfo = {
   state: {
     userName: '',
     pw: '',
-    role: '司机',
+    role: '人事',
+    roleId: 1,
     token: '',
-    addRoutes: [], // 过滤后的rouets
+    addRoutes: [], 
     asyncRoutes: [], // 后台返回的routes
     // routes: childrenRoutes
   },
@@ -53,6 +54,9 @@ const userInfo = {
     },
     changDefaultRole (state, newRole) {
       state.role = newRole
+    },
+    changeRoleId (state, newRoleId) {
+      state.roleId = newRoleId
     },
     changeToken (state, token) {
       state.token = token

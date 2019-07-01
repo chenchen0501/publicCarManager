@@ -6,6 +6,8 @@
       </el-header>
       <el-container class="main-container">
         <el-aside class="siderBar leftBar" width="200px">
+        <div>roleId:{{roleId}}</div>
+
           <div class="mainPageItem" @click="$router.push('/layout/home')">无锡公交管理方案</div>
           <el-menu
             class="el-menu-vertical-demo"
@@ -16,9 +18,10 @@
             <submenuItem :routes="routes"></submenuItem>
           </el-menu>
         </el-aside>
+      
         <el-main class="main">
           <keep-alive>
-            <router-view/>
+            <router-view />
           </keep-alive>
         </el-main>
       </el-container>
@@ -28,20 +31,39 @@
 <script>
 import headerBar from "./components/headerBar";
 import submenuItem from "./components/submenuItem";
-import { syncRoutes } from "@/router/routes";
+import { syncRoutes, role1, role2 } from "@/router/routes";
+import store from "@/store";
+
 export default {
   components: {
     submenuItem,
     headerBar
   },
   created() {},
-  mounted(){
-    console.log('menuRoutes:',syncRoutes)
+  mounted() {
+    console.log("roleId:", store.state.userInfo.roleId);
   },
   data() {
     return {
-      routes: syncRoutes
+      routes: store.state.userInfo.roleId == 1 ? role1 : role2,
+      roleId: store.state.userInfo.roleId
     };
+  },
+  watch: {
+    'store.state.userInfo.roleId': {
+      handler(newVal, oldVal) {
+        console.log("newId:", newVal);
+        console.log("oldId:", oldVal);
+      },
+      deep: true
+    },
+    routes: {
+      handler(newVal, oldVal) {
+        console.log("new:", newVal);
+        console.log("old:", oldVal);
+      },
+      deep: true
+    }
   }
 };
 </script>

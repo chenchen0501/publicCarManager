@@ -5,7 +5,7 @@ import {toRoute} from '@/router/routes'
 import store from '@/store'
 
 router.beforeEach((to, from, next) => {
-  if(to.path === '/layout/home'){
+  if(store.state.userInfo.addRoutes.length){
     router.addRoutes( toRoute )
   }
   next()

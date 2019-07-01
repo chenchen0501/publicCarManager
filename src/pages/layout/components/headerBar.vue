@@ -4,14 +4,14 @@
       <el-button @click="setDefaultRole">设为默认</el-button>
     </div>
     <el-select v-model="currentRole" @change="roleChange" class="nav-item nav-select">
-      <el-option v-for="item in roles" :value="item.name" :label="item.name" :key="item.id"></el-option>
+      <el-option v-for="item in roles" :value="item.id" :label="item.name" :key="item.id"></el-option>
     </el-select>
     <el-badge :value="messageNum" :max="99" class="item">
-      <svg-icon icon-class="bell" class="nav-head-icon nav-item"/>
+      <svg-icon icon-class="bell" class="nav-head-icon nav-item" />
     </el-badge>
     <div class="user">
       <div @click="pullDownShow = !pullDownShow">
-        <svg-icon icon-class="user" class="nav-head-icon nav-item"/>
+        <svg-icon icon-class="user" class="nav-head-icon nav-item" />
         <span style="margin-left:5px;cursor:pointer;">{{currentRole}}</span>
       </div>
       <div class="pull-down" v-if="pullDownShow">
@@ -34,9 +34,9 @@ export default {
       messageNum: 100, // 根据后台返回计算
       roles: [
         { id: 1, name: "人事" },
-        { id: 2, name: "司机" },
-        { id: 3, name: "经理" },
-        { id: 4, name: "会计" }
+        { id: 2, name: "司机" }
+        // { id: 3, name: "经理" },
+        // { id: 4, name: "会计" }
       ],
       currentRole: "人事"
     };
@@ -50,12 +50,14 @@ export default {
     // this.$store.dispatch('changeNewRoleAction',  await this.getDefaultRole())
   },
   methods: {
-    // 切换角色
-    roleChange(val){
-      
-    },
-    ...mapMutations(["changDefaultRole"]),
+    ...mapMutations(["changDefaultRole", "changeRoleId"]),
     ...mapActions(["changeNewRoleAction"]),
+    // 切换角色
+    roleChange(val) {
+      this.changeRoleId(val)
+      let newRole = this.roles.find(item => item.id === val).name
+      this.changDefaultRole(newRole);
+    },
     // 设置默认角色
     setDefaultRole() {
       this.changDefaultRole(this.currentRole);
