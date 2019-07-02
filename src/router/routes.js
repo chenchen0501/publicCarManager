@@ -5,15 +5,24 @@ let toRoute = [{
   name: 'to',
   component: components['layout'],
   children: [
+    {
+      path: 'home',
+      name: 'home',
+      component: components['homePage'],
+      meta: {
+        title: '首页'
+      }
+    }
   ]
 }]
 
 // 基础routes
 let baseRoutes = [
   {
-    path: '/layout',
+    path: '/',
     name: 'layout',
     isHidden: true,
+    redirect: '/home',
     component: components['layout'],
     children: [
       {
@@ -25,11 +34,6 @@ let baseRoutes = [
         }
       }
     ]
-  },
-  {
-    path: '/',
-    isHidden: true,
-    redirect: '/layout/home'
   },
   {
     path: '/login',
@@ -53,44 +57,6 @@ let baseRoutes = [
 
 // 全部routes
 let syncRoutes = [
-  // {
-  //   path: 'a',
-  //   name: 'a',
-  //   component: components['staffManage'],
-  //   meta: {
-  //     title: '人员管理',
-  //     icon: 'iconfl-renyuan'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'driver',
-  //       name: 'driver',
-  //       component: components['driver'],
-  //       meta: {
-  //         title: '司机管理',
-  //         icon: 'iconsiji-'
-  //       }
-  //     },
-  //     {
-  //       path: 'a1',
-  //       name: 'a1',
-  //       component: components['salary'],
-  //       meta: {
-  //         title: '工资管理',
-  //         icon: 'iconwodegongzi'
-  //       }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: 'carManage',
-  //   name: 'carManage',
-  //   component: components['carManage'],
-  //   meta: {
-  //     title: '车辆管理',
-  //     icon: 'iconcheliangguanli'
-  //   }
-  // }
 ]
 
 let role1 = [

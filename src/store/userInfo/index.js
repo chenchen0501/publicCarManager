@@ -28,7 +28,7 @@ const userInfo = {
     token: '',
     addRoutes: [], 
     asyncRoutes: [], // 后台返回的routes
-    // routes: childrenRoutes
+    routes: toRoute
   },
   getters: {
     GET_USERNAME (state) {
