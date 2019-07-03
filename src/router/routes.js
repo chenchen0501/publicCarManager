@@ -3,20 +3,13 @@ import components from './components'
 let toRoute = [{
   path: '/to',
   name: 'to',
+  isHidden: true,
   component: components['layout'],
   children: [
-    {
-      path: 'home',
-      name: 'home',
-      component: components['homePage'],
-      meta: {
-        title: '首页'
-      }
-    }
   ]
 }]
 
-// 基础routes
+// 基础routes,没有任何权限都可以访问
 let baseRoutes = [
   {
     path: '/',
@@ -82,4 +75,5 @@ let role2 = [
     }
   }
 ]
+
 export {baseRoutes, syncRoutes, toRoute, role1, role2}

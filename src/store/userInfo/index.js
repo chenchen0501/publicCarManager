@@ -2,7 +2,7 @@ import {getDefaultRole} from '@/api/authority/staff'
 import {login} from '@/api/user/user'
 import {setToken, setUserInfo} from '@/utils/auth'
 import router from '@/router'
-import {toRoute} from '@/router/routes'
+import {toRoute, role1} from '@/router/routes'
 
 // 过滤路由，将后台返回的动态路由跟现有路由进行比较过滤
 function filterRoutes (AllRoutes, permissionRoutes) {
@@ -23,14 +23,17 @@ const userInfo = {
   state: {
     userName: '',
     pw: '',
-    role: '人事',
-    roleId: 1,
+    role: '',
+    roleId: '',
     token: '',
     addRoutes: [], 
     asyncRoutes: [], // 后台返回的routes
     routes: toRoute
   },
   getters: {
+    GET_ROUTES (state) {
+      return state.routes
+    },
     GET_USERNAME (state) {
       return state.userName
     },
@@ -63,6 +66,7 @@ const userInfo = {
     },
     changeAddRoutes (state, routes) {
       state.addRoutes = routes
+      state.routes = routes
     },
     changeAsyncRoutes (state, routes) {
       state.asyncRoutes = routes
@@ -79,24 +83,38 @@ const userInfo = {
     login ({commit}, userInfo) {
       return new Promise((resolve, reject) => {
         login(userInfo).then(res => {
-          // 设置cookie中的userInfo
-          setUserInfo(userInfo)
           // 设置cookie中的token值
           setToken(res.data.token)
-          commit('changeUserName', userInfo.userName)
-          commit('changeNewPw', userInfo.pw)
           commit('changeToken', res.data.token)
-          commit('changeAsyncRoutes', res.data.routes)
           resolve()
         }).catch(error => {
           reject(error)
         })
       })
     },
+    // 拉取用户信息，并且获得对应的路由
+    getUserInfo({commit}){
+      return new Promise((resolve, rejcet) => {
+        // 暂时写死用户信息
+        let roleId = 1
+        let role = '人事'
+        let userName = '陈晨'
+        let pw = 123123
+        commit('changeUserName',userName)
+        commit('changeNewPw', pw)
+        commit('changeRoleId', roleId)
+        commit('changDefaultRole', role)
+        resolve()
+      })
+    },
+    // 获取角色下的动态路由
     getAsyncRoutes ({commit, state}) {
       return new Promise((resolve, reject) => {
-        login().then(res => {
-        })
+        // 写死返回的角色下的路由
+        let syncRoutes = role1
+        toRoute[0].children.push(...syncRoutes)
+        commit('changeAddRoutes', toRoute)
+        resolve()
       })
     }
   }

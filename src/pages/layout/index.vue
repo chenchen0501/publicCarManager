@@ -6,14 +6,14 @@
       </el-header>
       <el-container class="main-container">
         <el-aside class="siderBar leftBar" width="200px">
-          <div class="mainPageItem" @click="$router.push('/layout/home')">无锡公交管理方案</div>
+          <div class="mainPageItem" @click="$router.push('/home')">无锡公交管理方案</div>
           <el-menu
             class="el-menu-vertical-demo"
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b"
           >
-            <submenuItem :routes="showRoutes"></submenuItem>
+            <submenuItemOne :routes="routes"></submenuItemOne>
           </el-menu>
         </el-aside>
 
@@ -29,6 +29,7 @@
 <script>
 import headerBar from "./components/headerBar";
 import submenuItem from "./components/submenuItem";
+import submenuItemOne from './components/submenuItemOne'
 import { syncRoutes, role1, role2, toRoute, baseRoutes } from "@/router/routes";
 import store from "@/store";
 import router from '@/router'
@@ -36,38 +37,15 @@ import router from '@/router'
 export default {
   components: {
     submenuItem,
-    headerBar
+    headerBar,
+    submenuItemOne
   },
-  created() {},
-  mounted() {
-    console.log("roleId:", this.$store.state.userInfo.roleId);
+  computed:{
   },
   data() {
     return {
-      routes: store.state.userInfo.roleId == 1 ? role1 : role2,
-      showRoutes: toRoute,
-      baseRoute: baseRoutes
+      routes: store.state.userInfo.routes
     };
-  },
-  watch: {
-    "$store.state.userInfo.roleId": {
-      handler(newVal, oldVal) {
-        this.routes = newVal == 1 ? role1 : role2;
-        this.showRoutes[0].children.push(this.routes)
-        this.baseRoute.push(...this.showRoutes)
-        router.addRoutes(this.showRoutes)
-        console.log("newId:", newVal);
-        console.log("oldId:", oldVal);
-      },
-      deep: true
-    },
-    routes: {
-      handler(newVal, oldVal) {
-        console.log("new:", newVal);
-        console.log("old:", oldVal);
-      },
-      deep: true
-    }
   }
 };
 </script>
