@@ -13,9 +13,7 @@ export default function createService (baseURL) {
     baseURL: baseURL,
     timeout: 100000 // 请求超时时间
   })
-  // if (store.) {
 
-  // }
   // request拦截器
   service.interceptors.request.use(config => {
     // 处理axios get请求数组多了[]的问题
@@ -38,8 +36,9 @@ export default function createService (baseURL) {
   // response拦截器
   service.interceptors.response.use(
     response => {
+      console.log('response:', response)
       /**
-       * code为非20000是抛错 可结合自己业务进行修改
+       * code为非00000是抛错 可结合自己业务进行修改
        */
       const res = response.data
       if (res.code && res.code === 'UNIQUEERROR') {
@@ -52,7 +51,7 @@ export default function createService (baseURL) {
         })
         return Promise.reject(res)
       } else {
-        return response.data
+        return res.data
       }
     },
     error => {

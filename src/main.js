@@ -6,11 +6,12 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/styles/index.css'
-import '@/styles/element-primary-color.scss'
+// import '@/styles/element-primary-color.scss'
 import '@/icons/font/iconfont.css'
 import '@/icons' // icon
 import '@/permission'
 import store from '@/store'
+import './mock/index.js'
 
 Vue.use(ElementUI, {
   size: 'mini'

@@ -1,56 +1,61 @@
 <template>
   <div id="login">
     <div id="container">
-      <el-form :model="form" :rules="rules" ref="form">
+      <el-form :model="form"
+               :rules="rules"
+               ref="form">
         <div class="user">
           <el-form-item prop="userName">
-            <svg-icon icon-class="user" class="userIcon"></svg-icon>
-            <el-input @keyup.enter.native="doLogin" v-model="form.userName"></el-input>
+            <svg-icon icon-class="user"
+                      class="userIcon"></svg-icon>
+            <el-input @keyup.enter.native="doLogin"
+                      v-model="form.userName"></el-input>
           </el-form-item>
         </div>
         <div class="password">
           <el-form-item prop="pw">
-            <svg-icon icon-class="password" class="pwIcon"></svg-icon>
-            <el-input @keyup.enter.native="doLogin" v-model="form.pw"></el-input>
+            <svg-icon icon-class="password"
+                      class="pwIcon"></svg-icon>
+            <el-input @keyup.enter.native="doLogin"
+                      v-model="form.pw"></el-input>
           </el-form-item>
         </div>
-        <el-button type="primary" @click="doLogin">登录</el-button>
+        <el-button type="primary"
+                   @click="doLogin">登录</el-button>
       </el-form>
     </div>
   </div>
 </template>
 <script>
-import store from "@/store";
-// import { childrenRoutes } from "@/router/routes";  
-import Router from 'vue-router'
+import store from '@/store'
 
 export default {
-  data() {
+  data () {
     return {
       form: {},
       rules: {
         userName: [
-          { required: true, message: "请输入用户名", trigger: "blur" }
+          { required: true, message: '请输入用户名', trigger: 'blur' }
         ],
-        pw: [{ required: true, message: "请输入密码", trigger: "blur" }]
+        pw: [{ required: true, message: '请输入密码', trigger: 'blur' }]
       }
-    };
+    }
   },
   methods: {
     // 登录
-    doLogin() {
+    doLogin () {
       this.$refs.form.validate(valid => {
         if (valid) {
-          store.dispatch("login", this.form).then(() => {
-            this.$message.success("登录成功");
-            this.$router.push("/");
-          });
+          store.dispatch('login', this.form).then(() => {
+            this.$message.success('登录成功')
+            this.$router.push('/')
+          })
         }
-      });
-    },
+      })
+    }
 
   }
-};
+}
 </script>
 <style lang="less" scoped>
 #login {

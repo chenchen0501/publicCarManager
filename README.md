@@ -13,4 +13,5 @@ npm run dev
 4.  svg使用
 5.  element-UI
 6.  es6
+7.  mockjs
 
