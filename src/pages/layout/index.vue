@@ -6,7 +6,9 @@
       </el-header>
       <el-container class="main-container">
         <el-aside class="siderBar leftBar" width="200px">
-          <div class="mainPageItem" @click="$router.push('/home')">无锡公交管理方案</div>
+          <div class="mainPageItem" @click="$router.push('/home')">
+            无锡公交管理方案
+          </div>
           <el-menu
             class="el-menu-vertical-demo"
             background-color="#545c64"
@@ -18,9 +20,11 @@
         </el-aside>
 
         <el-main class="main">
-          <keep-alive>
+          123
+          <Msg :data="{ name: 'cc' }" />
+          <!-- <keep-alive>
             <router-view />
-          </keep-alive>
+          </keep-alive> -->
         </el-main>
       </el-container>
     </el-container>
@@ -29,24 +33,25 @@
 <script>
 import headerBar from "./components/headerBar";
 import submenuItem from "./components/submenuItem";
-import submenuItemOne from './components/submenuItemOne'
+import submenuItemOne from "./components/submenuItemOne";
 import { syncRoutes, role1, role2, toRoute, baseRoutes } from "@/router/routes";
 import store from "@/store";
-import router from '@/router'
+import router from "@/router";
+import Msg from "cc_test_npm_hello";
 
 export default {
   components: {
     submenuItem,
     headerBar,
-    submenuItemOne
+    submenuItemOne,
+    Msg,
   },
-  computed:{
-  },
+  computed: {},
   data() {
     return {
-      routes: store.state.userInfo.routes
+      routes: store.state.userInfo.routes,
     };
-  }
+  },
 };
 </script>
 <style lang="less" scoped>

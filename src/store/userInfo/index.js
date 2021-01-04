@@ -19,6 +19,7 @@ function filterRoutes (AllRoutes, permissionRoutes) {
   })
   return afterFilterRoutes
 }
+
 const userInfo = {
   state: {
     userName: '',
@@ -26,7 +27,7 @@ const userInfo = {
     role: '',
     roleId: '',
     token: '',
-    addRoutes: [], 
+    addRoutes: [],
     asyncRoutes: [], // 后台返回的routes
     routes: toRoute
   },
@@ -93,14 +94,14 @@ const userInfo = {
       })
     },
     // 拉取用户信息，并且获得对应的路由
-    getUserInfo({commit}){
-      return new Promise((resolve, rejcet) => {
+    getUserInfo ({commit}) {
+      return new Promise((resolve, reject) => {
         // 暂时写死用户信息
         let roleId = 1
         let role = '人事'
         let userName = '陈晨'
         let pw = 123123
-        commit('changeUserName',userName)
+        commit('changeUserName', userName)
         commit('changeNewPw', pw)
         commit('changeRoleId', roleId)
         commit('changDefaultRole', role)

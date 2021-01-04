@@ -12,20 +12,20 @@
 </template>
 <script>
 export default {
-  props: ["routes"],
-  data() {
+  props: ['routes'],
+  data () {
     return {
       menuRoutes: this.routes[0].children,
       basePath: this.routes[0].path
-    };
+    }
   },
-  mounted() {
-    console.log("传入menu的routes:", this.menuRoutes.children);
+  mounted () {
+    console.log('传入menu的routes:', this.menuRoutes.children)
   },
   methods: {
-    isSingleMenuShow(item) {
-      return !item.children || (!item.children && !item.children.length);
+    isSingleMenuShow (item) {
+      return !item.children || (!item.children && !item.children.length)
     }
   }
-};
+}
 </script>

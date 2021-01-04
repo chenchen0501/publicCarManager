@@ -13,7 +13,7 @@ router.beforeEach((to, from, next) => {
     } else {
       if (!store.state.userInfo.addRoutes.length) {
         console.log('正在加路由')
-        store.dispatch('getUserInfo').then(()=>{
+        store.dispatch('getUserInfo').then(() => {
           store.dispatch('getAsyncRoutes').then(() => {
             let addRoutes = store.state.userInfo.addRoutes
             console.log('addRoutes:', addRoutes)
